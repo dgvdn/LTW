@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+<div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <div th:replace="fragments::loading">
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <div th:replace="fragments::sidebar">
+    </div>
+    <!-- Sidebar End -->
+
+
+    <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav th:replace="fragments::navbar">
+        </nav>
+        <!-- Navbar End -->
+
+
+        <!-- 404 Start -->
+        <div class="container-fluid">
+            <form class="form-horizontal" th:action="@{/hotelier/edit-hotel/{id} (id=${hotel.id})}" method="post"
+                  enctype="multipart/form-data" th:object="${hotel}" name="add-form">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Add Hotel</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="hote_name">Name</label>
+                        <div class="col-md-4">
+                            <input id="hote_name" th:field="*{name}" name="hotel_name"
+                                   class="form-control input-md" required="" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="hote_star">Star</label>
+                        <div class="col-md-4">
+                            <input id="hote_star" th:field="*{star}" name="hotel_star"
+                                   class="form-control input-md" required="" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="description">Description </label>
+                        <div class="col-md-4">
+                            <input id="description" th:field="*{des}" name="description"
+                                   class="form-control input-md" required="" type="text">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="address">Address</label>
+                        <div class="col-md-4">
+                            <input id="address" th:field="*{address}"
+                                   name="address" class="form-control input-md" required="" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <!-- File Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="imageHotel">Image</label>
+                        <div class="col-md-4">
+                            <input id="imageHotel" name="imageHotel" class="input-file" type="file">
+                        </div>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+        <!-- 404 End -->
+
+
+        <!-- Footer Start -->
+        <div th:replace="fragments::footer">
+        </div>
+        <!-- Footer End -->
+    </div>
+    <!-- Content End -->
+
+
+    <!-- Back to Top -->
+    <a th:replace="fragments::backToTop"></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<div th:replace="fragments::script"></div>
+</body>
+
+</html>

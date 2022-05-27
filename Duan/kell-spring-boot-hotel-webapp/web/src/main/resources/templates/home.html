@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+</head>
+<body>
+    <h2>hello</h2>
+    <form th:object="${rooms}" method="post" >
+        <div th:if="${ not#lists.isEmpty(rooms)}">
+<!--???            bắt buộc phải duyệt một đối tượng = cách duyệt list ???-->
+            <div th:each="room : ${rooms}">
+
+                <p th:text="${room.id}">id</p>
+                <p th:text="${room.name}">name</p>
+                <p th:text="${room.type}">type</p>
+                <p th:text="${room.style}">style</p>
+                <p th:text="${message}">message</p>
+
+                <a th:href="@{/roomdetail/{id}(id= ${room.id})}">RoomDetai</a>
+                <a th:href="@{/Hoteldetail/{id}(id= ${room.id})}">HotelDetai</a>
+<!--                romdetail/2-->
+                <a href="/roomdetail"></a>
+                <a href="/hoteldetail"></a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

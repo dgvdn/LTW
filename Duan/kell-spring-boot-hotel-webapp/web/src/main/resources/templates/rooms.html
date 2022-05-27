@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+<div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <div th:replace="fragments::loading">
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <div th:replace="fragments::sidebar">
+    </div>
+    <!-- Sidebar End -->
+
+
+    <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav th:replace="fragments::navbar">
+        </nav>
+        <!-- Navbar End -->
+
+
+        <div class="container-fluid">
+            <div th:if="${size == 0}">
+                <p class="text-center display-1 fw-bold">You haven't added any rooms</p>
+            </div>
+            <div th:if="${success}" class="text-center alert alert-success">
+                <p th:text="${success}"></p>
+            </div>
+            <div th:if="${error}" class="text-center alert alert-danger">
+                <p th:text="${error}"></p>
+            </div>
+            <table class="table table-striped" th:if="${size > 0}">
+                <thead>
+                <tr>
+                    <th scope="col">Hotel Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Hotel Address</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hotel:${hotels}">
+                    <th scope="row" th:text="${hotel.name}"></th>
+                    <td><img src="" style="height: 40px; width: 40px;"
+                             th:src="*{'data:image/jpeg;base64,' + {hotel.image}}"></td>
+                    <td th:text="${hotel.address}"></td>
+                    <td><a th:href="@{/hotelier/add-room/{id} (id = ${hotel.id})}"
+                           class="btn btn-primary">Add Room</a></td>
+                    <td><a th:href="@{/hotelier/view-rooms/{id} (id = ${hotel.id})}"
+                           class="btn btn-primary">View Rooms</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Footer Start -->
+        <div th:replace="fragments::footer">
+        </div>
+        <!-- Footer End -->
+    </div>
+    <!-- Content End -->
+
+
+    <!-- Back to Top -->
+    <a th:replace="fragments::backToTop"></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<div th:replace="fragments::script"></div>
+</body>
+
+</html>

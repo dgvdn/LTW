@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+<div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <div th:replace="fragments::loading">
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <div th:replace="fragments::sidebar">
+    </div>
+    <!-- Sidebar End -->
+
+
+    <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav th:replace="fragments::navbar">
+        </nav>
+        <!-- Navbar End -->
+
+
+        <div class="container-fluid">
+            <div th:if="${size == 0}">
+                <p class="text-center display-1 fw-bold">You haven't added any rooms</p>
+            </div>
+            <div th:if="${success}" class="text-center alert alert-success">
+                <p th:text="${success}"></p>
+            </div>
+            <div th:if="${error}" class="text-center alert alert-danger">
+                <p th:text="${error}"></p>
+            </div>
+            <table class="table table-striped" th:if="${size > 0}">
+                <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Utilities</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Description</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="room:${rooms}">
+                    <th scope="row" th:text="${room.type}"></th>
+                    <td><img src="" style="height: 40px; width: 40px;"
+                             th:src="*{'data:image/jpeg;base64,' + {room.image}}"></td>
+                    <td th:text="${room.util}"></td>
+                    <td th:text="${room.quantity}"></td>
+                    <td th:text="${room.des}"></td>
+                    <td><a th:href="@{/hotelier/edit-room/{id} (id = ${room.id})}"
+                           class="btn btn-primary">Edit</a></td>
+                    <td><a th:href="@{/hotelier/delete-room/{id} (id = ${room.id})}"
+                           class="btn btn-primary">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Footer Start -->
+        <div th:replace="fragments::footer">
+        </div>
+        <!-- Footer End -->
+    </div>
+    <!-- Content End -->
+
+
+    <!-- Back to Top -->
+    <a th:replace="fragments::backToTop"></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<div th:replace="fragments::script"></div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+.container {
+    margin-top: 50px;
+}
+
+.row {
+    border: 1px darkgrey solid;
+    border-radius: 10px;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+button {
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    border-radius: 5px;
+}
+
+button:hover {
+    /* đậm hơn khi đ chuột vào */
+    opacity: 1;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.signinbtn {
+    width: 130px;
+    padding: 5px 0 5px 0px;
+    margin-right: 10px;
+    background-color: #04AA6D;
+}
+
+.cancelbtn {
+    width: 130px;
+    padding: 5px 0 5px 0px;
+    margin-left: 10px;
+    background-color: #f44336;
+}
+
+.inline {
+    display: inline-block;
+}
